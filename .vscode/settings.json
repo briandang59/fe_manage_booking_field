@@ -1,0 +1,36 @@
+{
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+    "css.validate": false,
+    "less.validate": false,
+    "scss.validate": false,
+
+    "files.associations": {
+        "**/app/globals.css": "tailwindcss",
+        "**/globals.css": "tailwindcss"
+    },
+
+    "[tailwindcss]": {
+        "editor.quickSuggestions": {
+            "strings": "on"
+        },
+        "editor.suggest.insertMode": "replace",
+        "editor.autoClosingBrackets": "always",
+        "editor.inlineSuggest.enabled": true,
+        "editor.codeActionsOnSave": {
+            "source.organizeImports": "explicit"
+        }
+    },
+
+    "editor.formatOnPaste": true,
+    "prettier.requireConfig": false,
+    "tailwindCSS.classAttributes": ["class", "className", "ngClass", ".*Styles"],
+
+    "tailwindCSS.experimental.classRegex": [
+        ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+        ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+    ],
+
+    "css.lint.unknownAtRules": "ignore"
+}
