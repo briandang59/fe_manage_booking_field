@@ -10,6 +10,8 @@ import { LogIn, User, CalendarDays, LogOut, Badge } from "lucide-react";
 
 import { paths } from "@/utils/constants/paths";
 
+import ContainerWrapper from "./ContainerWrapper";
+
 export default function Header() {
     const pathname = usePathname();
 
@@ -57,10 +59,10 @@ export default function Header() {
 
     return (
         <header className="border-b border-border bg-surface">
-            <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-6 flex items-center justify-between">
+            <ContainerWrapper className="py-4 flex items-center justify-between">
                 <Link
                     href={paths.home}
-                    className="text-2xl font-bold text-primary flex items-center gap-3 text-primary-800"
+                    className="text-xl font-bold text-primary flex items-center gap-3 text-primary-800"
                 >
                     <Badge className="w-8 h-8" />
                     <span> Bet88</span>
@@ -76,9 +78,9 @@ export default function Header() {
                                     <Link
                                         href={page.path}
                                         className={`
-                      flex items-center gap-2 py-2 text-lg font-medium transition-colors
-                      ${isActive ? "text-primary" : "text-text-muted hover:text-text"}
-                    `}
+                          flex items-center gap-2 py-2 text-[14px] font-medium transition-colors
+                          ${isActive ? "text-primary" : "text-text-muted hover:text-text"}
+                        `}
                                     >
                                         {page.label}
                                     </Link>
@@ -90,7 +92,7 @@ export default function Header() {
                             {isLoggedIn ? (
                                 <Dropdown menu={{ items: dropdownItems }} trigger={["click"]}>
                                     <Space className="cursor-pointer hover:opacity-80 transition">
-                                        <Avatar size="large" className="bg-primary">
+                                        <Avatar size="default" className="bg-primary">
                                             {userName.charAt(0).toUpperCase()}
                                         </Avatar>
                                     </Space>
@@ -108,7 +110,7 @@ export default function Header() {
                         </li>
                     </ul>
                 </nav>
-            </div>
+            </ContainerWrapper>
         </header>
     );
 }

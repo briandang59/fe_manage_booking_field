@@ -54,7 +54,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             >
                 <AntdProvider>
                     <Header />
-                    <main className="flex-1">{children}</main>
+                    <main className="flex-1 mt-4">{children}</main>
                 </AntdProvider>
             </body>
         </html>
