@@ -7,15 +7,15 @@ interface IContainerWrapperProps {
     className?: string;
 }
 
-function ContainerWrapper({ children, className }: IContainerWrapperProps) {
+function ContainerWrapper(props: IContainerWrapperProps) {
     return (
         <div
             className={clsx(
                 "container mx-auto 2xl:max-w-[1400px] xl:max-w-[1200px] max-w-full",
-                className
+                props.className
             )}
         >
-            {children}
+            {props.children}
         </div>
     );
 }
