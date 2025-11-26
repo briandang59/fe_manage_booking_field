@@ -19,10 +19,16 @@ interface IUserBookingProps {
 
 function UserBooking(props: IUserBookingProps) {
     const mappingStatus: Record<string, { color: string; label: string }> = {
-        cancel: { color: "bg-red-100 text-red-800 border-red-800", label: "Đã hủy" },
-        accepted: { color: "bg-green-100 text-green-800 border-green-800", label: "Đã xác nhận" },
+        canceled: {
+            color: "bg-[#4A0E0E]! text-[#FF4C4C] border border-[#FF4C4C]",
+            label: "Đã hủy",
+        },
+        accepted: {
+            color: "bg-[#234B1C]! text-[#39FF14] border border-[#39FF14]",
+            label: "Đã xác nhận",
+        },
         pending: {
-            color: "bg-orange-100 text-orange-800 border-orange-800",
+            color: "bg-[#4A3A0E]! text-[#FFCC33] border border-[#FFCC33]",
             label: "Chờ xác nhận",
         },
     };

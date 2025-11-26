@@ -13,7 +13,7 @@ export default function AntdProvider({ children }: IAntdProviderProps) {
         <ConfigProvider
             theme={{
                 token: {
-                    colorPrimary: "#6EE7B7",
+                    colorPrimary: "#39FF14",
                     colorInfo: "#32D583",
                     colorSuccess: "#52c41a",
                     colorWarning: "#faad14",
@@ -26,9 +26,9 @@ export default function AntdProvider({ children }: IAntdProviderProps) {
 
                 components: {
                     Button: {
-                        colorPrimary: "#6EE7B7",
-                        colorPrimaryHover: "#5AD3A4",
-                        colorPrimaryActive: "#45BF92",
+                        colorPrimary: "#39FF14",
+                        colorPrimaryHover: "#39FF14",
+                        colorPrimaryActive: "#39FF14",
 
                         colorTextLightSolid: "#121212",
 

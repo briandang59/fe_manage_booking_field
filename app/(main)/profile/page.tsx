@@ -4,6 +4,7 @@ import { Avatar, Button, Tabs, TabsProps } from "antd";
 import CardWrapper from "@/components/common/CardWrapper";
 import ContainerWrapper from "@/components/common/ContainerWrapper";
 import UserBooking from "@/components/common/UserBooking";
+import UserTag from "@/components/common/UserTag";
 import { bookings } from "@/utils/mock-datas/booking";
 
 function ProfilePage() {
@@ -80,6 +81,25 @@ function ProfilePage() {
                 </CardWrapper>
                 <CardWrapper>
                     <p className="text-[15px] font-bold">Thông tin người dùng</p>
+                    <div className="grid grid-cols-2 gap-4 my-4">
+                        <UserTag>
+                            <p className="text-[14px] text-gray-500 font-medium">Vị trí</p>
+                            <p className="text-[14px]">Tiền vệ</p>
+                        </UserTag>
+                        <UserTag>
+                            <p className="text-[14px] text-gray-500 font-medium">Khả năng</p>
+                            <p className="text-[14px]">Mới chơi</p>
+                        </UserTag>
+                    </div>
+                    <p className="text-[15px] font-bold">Lịch rảnh</p>
+                    <div className="flex flex-wrap gap-4 my-4">
+                        <UserTag className="bg-[#234B1C]! text-[#39FF14]! rounded-full! p-2! font-medium">
+                            Monday 6pm - 7pm
+                        </UserTag>
+                        <UserTag className="bg-[#234B1C]! text-[#39FF14]! rounded-full! p-2! font-medium">
+                            Monday 6pm - 7pm
+                        </UserTag>
+                    </div>
                 </CardWrapper>
             </div>
             <div>
