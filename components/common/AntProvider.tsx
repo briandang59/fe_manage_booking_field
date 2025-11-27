@@ -19,9 +19,10 @@ export default function AntdProvider({ children }: IAntdProviderProps) {
                     colorWarning: "#faad14",
                     colorError: "#ff4d4f",
 
-                    borderRadius: 12,
+                    borderRadius: 8,
                     fontFamily: "var(--font-inter), system-ui, sans-serif",
                     fontSize: 15,
+                    colorTextPlaceholder: "rgba(236, 236, 236, 0.6)",
                 },
 
                 components: {
@@ -42,9 +43,15 @@ export default function AntdProvider({ children }: IAntdProviderProps) {
                     },
 
                     Input: {
-                        borderRadius: 12,
+                        borderRadius: 8,
                         colorBorder: "#d1f5e1",
                         colorPrimaryHover: "#32D583",
+                        colorBgContainer: "#2C2C2E",
+                        colorText: "#ececec",
+                    },
+
+                    Form: {
+                        labelColor: "#ececec",
                     },
 
                     Select: {

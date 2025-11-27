@@ -3,8 +3,9 @@ export const paths = {
     booking_field: "/booking-field",
     news: "/news",
     find_match: "/find-match",
-    login: "/login",
-    register: "/register",
+    login: "/sign-in",
+    register: "/sign-up",
     profile: "/profile",
     fields: "/fields",
+    forgot_password: "forgot-password",
 };
