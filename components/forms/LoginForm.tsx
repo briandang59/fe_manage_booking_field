@@ -1,11 +1,13 @@
 "use client";
 import Link from "next/link";
 
+import { yupResolver } from "@hookform/resolvers/yup";
 import { Button, Form, message } from "antd";
 import { useForm, FormProvider } from "react-hook-form";
 
 import { emailRules, passwordRules } from "@/utils/constants/formValidation";
 import { paths } from "@/utils/constants/paths";
+import { loginSchema } from "@/utils/constants/schemas";
 
 import FormInput from "../form-components/FormInput";
 
@@ -16,6 +18,7 @@ interface LoginFormData {
 
 function LoginForm() {
     const methods = useForm<LoginFormData>({
+        resolver: yupResolver(loginSchema),
         defaultValues: {
             email: "",
             password: "",
@@ -47,6 +50,7 @@ function LoginForm() {
                         Nhập thông tin để truy cập tài khoản của bạn
                     </p>
                 </div>
+
                 <FormInput
                     name="email"
                     rules={emailRules}
@@ -72,7 +76,7 @@ function LoginForm() {
                 </Form.Item>
                 <div className="flex items-center gap-2 justify-center">
                     <span className="text-[#ececec] text-[16px]"> Chưa có tài khoản?</span>
-                    <Link href={`/${paths.register}`}>Đăng ký</Link>
+                    <Link href={`${paths.register}`}>Đăng ký</Link>
                 </div>
             </Form>
         </FormProvider>

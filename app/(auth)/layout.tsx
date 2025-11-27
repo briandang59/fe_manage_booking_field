@@ -1,8 +1,10 @@
 // app/layout.tsx
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Link from "next/link";
 
 import { Image } from "antd";
+import { X } from "lucide-react";
 
 import { images } from "@/assets/images";
 import AntdProvider from "@/components/common/AntProvider";
@@ -64,7 +66,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                             width={"100%"}
                             className="object-cover"
                         />
-                        <main className="p-8 flex items-center justify-center">{children}</main>
+                        <main className="flex flex-col gap-16">
+                            <div className="flex justify-end">
+                                <Link
+                                    href={`/`}
+                                    className="rounded-full min-size-[50px] flex items-center justify-center p-8"
+                                >
+                                    <X />
+                                </Link>
+                            </div>
+                            <div className="p-8 flex items-center justify-center flex-1">
+                                {children}
+                            </div>
+                        </main>
                     </div>
                 </AntdProvider>
             </body>

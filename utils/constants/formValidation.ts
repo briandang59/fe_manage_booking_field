@@ -1,5 +1,4 @@
 import { RegisterOptions, FieldValues, FieldPath } from "react-hook-form";
-import * as yup from "yup";
 
 type ValidationRules<
     TFieldValues extends FieldValues = FieldValues,
@@ -32,9 +31,3 @@ export const descriptionRules: ValidationRules<{ description: string }, "descrip
         message: "Mô tả tối đa 200 ký tự",
     },
 };
-
-export const loginSchema = yup.object({
-    email: yup.string().required("Email là bắt buộc").email("Email không hợp lệ"),
-    password: yup.string().required("Mật khẩu là bắt buộc").min(6, "Mật khẩu phải ít nhất 6 ký tự"),
-    remember: yup.boolean(),
-});
