@@ -15,7 +15,7 @@ import ContainerWrapper from "./ContainerWrapper";
 export default function Header() {
     const pathname = usePathname();
 
-    const [isLoggedIn, setIsLoggedIn] = useState(true);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [userName, setUserName] = useState("Nguyễn Văn A");
 
     useEffect(() => {
@@ -79,7 +79,7 @@ export default function Header() {
                                         href={page.path}
                                         className={`
                           flex items-center gap-2 py-2 text-[14px] font-medium transition-colors
-                          ${isActive ? "text-[#45BF92]" : "text-gray-500 hover:text-[#45BF92]"}
+                          ${isActive ? "text-[#39FF14]" : "text-gray-500 hover:text-[#39FF14]"}
                         `}
                                     >
                                         {page.label}
@@ -100,7 +100,6 @@ export default function Header() {
                             ) : (
                                 <Button
                                     type="primary"
-                                    size="large"
                                     icon={<LogIn className="w-5 h-5" />}
                                     onClick={() => (window.location.href = paths.login)}
                                 >

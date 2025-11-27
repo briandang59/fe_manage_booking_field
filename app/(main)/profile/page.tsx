@@ -4,8 +4,10 @@ import { Avatar, Button, Tabs, TabsProps } from "antd";
 import CardWrapper from "@/components/common/CardWrapper";
 import ContainerWrapper from "@/components/common/ContainerWrapper";
 import UserBooking from "@/components/common/UserBooking";
+import UserPost from "@/components/common/UserPost";
 import UserTag from "@/components/common/UserTag";
 import { bookings } from "@/utils/mock-datas/booking";
+import { posts } from "@/utils/mock-datas/post";
 
 function ProfilePage() {
     const items: TabsProps["items"] = [
@@ -60,7 +62,7 @@ function ProfilePage() {
         console.log(key);
     };
     return (
-        <ContainerWrapper className="grid grid-cols-[25%_75%] gap-16 mt-8">
+        <ContainerWrapper className="grid grid-cols-[25%_75%] gap-16 my-8">
             <div className="flex flex-col gap-8">
                 <CardWrapper>
                     <div className="flex flex-col gap-8">
@@ -80,7 +82,7 @@ function ProfilePage() {
                     </div>
                 </CardWrapper>
                 <CardWrapper>
-                    <p className="text-[15px] font-bold">Thông tin người dùng</p>
+                    <p className="text-[16px] font-bold">Thông tin người dùng</p>
                     <div className="grid grid-cols-2 gap-4 my-4">
                         <UserTag>
                             <p className="text-[14px] text-gray-500 font-medium">Vị trí</p>
@@ -102,9 +104,22 @@ function ProfilePage() {
                     </div>
                 </CardWrapper>
             </div>
-            <div>
-                <h3 className="text-[24px] font-bold">Sân đã đặt</h3>
+            <div className="flex flex-col gap-8">
+                <h3 className="text-[24px] font-bold">Lịch sử đặt sân</h3>
                 <Tabs defaultActiveKey="1" items={items} onChange={onChangeTab} />
+                <h3 className="text-[24px] font-bold">Bài viết của tôi</h3>
+                <div className="flex flex-col gap-4">
+                    {posts.map((post, index) => (
+                        <UserPost
+                            avatar_url={post.avatar_url}
+                            created_at={post.created_at}
+                            description={post.description}
+                            full_name={post.full_name}
+                            tag={post.tag}
+                            key={index}
+                        />
+                    ))}
+                </div>
             </div>
         </ContainerWrapper>
     );
