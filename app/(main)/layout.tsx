@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
 import AntdProvider from "@/components/common/AntProvider";
+import Footer from "@/components/common/Footer";
 import Header from "@/components/common/Header";
 
 import "../globals.css";
@@ -53,7 +54,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             >
                 <AntdProvider>
                     <Header />
-                    <main className="flex-1 mt-4">{children}</main>
+                    <main className="flex-1">{children}</main>
+                    <Footer />
                 </AntdProvider>
             </body>
         </html>
