@@ -58,7 +58,7 @@ export default function Header() {
     ];
 
     return (
-        <header className="border-b border-border bg-surface">
+        <header className="border-b border-gray-500 bg-surface">
             <ContainerWrapper className="py-4 flex items-center justify-between">
                 <Link
                     href={paths.home}
@@ -69,7 +69,7 @@ export default function Header() {
                 </Link>
 
                 <nav>
-                    <ul className="flex items-center gap-12">
+                    <ul className="flex items-center gap-8">
                         {pages.map((page) => {
                             const isActive = pathname === page.path;
 
@@ -78,7 +78,7 @@ export default function Header() {
                                     <Link
                                         href={page.path}
                                         className={`
-                          flex items-center gap-2 py-2 text-[14px] font-medium transition-colors
+                          flex items-center gap-2 py-2 text-[16px] font-medium transition-colors
                           ${isActive ? "text-[#39FF14]" : "text-gray-500 hover:text-[#39FF14]"}
                         `}
                                     >
