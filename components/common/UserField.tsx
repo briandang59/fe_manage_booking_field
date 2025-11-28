@@ -1,6 +1,8 @@
 import { Image, Rate, Button, Tag } from "antd";
 import { ArrowRight } from "lucide-react";
 
+import { paths } from "@/utils/constants/paths";
+
 import CardWrapper from "./CardWrapper";
 
 export interface IUserFieldProps {
@@ -13,10 +15,12 @@ export interface IUserFieldProps {
     price_per_hour: number;
     grass_type: string;
     rating: number;
+    slug: string;
 }
 
 function UserField(props: IUserFieldProps) {
     const {
+        slug,
         field_name,
         branch_name,
         field_thumb,
@@ -35,7 +39,11 @@ function UserField(props: IUserFieldProps) {
     };
 
     return (
-        <CardWrapper className="flex flex-col h-full p-0 overflow-hidden border border-[#343434] group hover:border-[#39FF14] transition-colors duration-300">
+        <CardWrapper
+            className="flex flex-col h-full p-0 overflow-hidden border border-[#343434] group hover:border-[#39FF14] transition-colors duration-300"
+            type="field"
+            href={`${paths.fields}/${slug}`}
+        >
             <div className="relative w-full h-[180px] overflow-hidden">
                 <Image
                     src={field_thumb}
@@ -45,7 +53,7 @@ function UserField(props: IUserFieldProps) {
                     height="100%"
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                <div className="absolute top-2 right-2 bg-black/60 backdrop-blur-md px-2 py-1 rounded text-[14px] text-[#39FF14] font-semibold border border-[#39FF14]/30">
+                <div className="absolute top-2 right-2 bg-black/60 backdrop-blur-md px-2 py-1 rounded text-xs text-[#39FF14] font-semibold border border-[#39FF14]/30">
                     {grass_type}
                 </div>
             </div>
@@ -86,12 +94,6 @@ function UserField(props: IUserFieldProps) {
                             <span className="text-[16px] font-normal text-white">/h</span>
                         </p>
                     </div>
-                    <Button
-                        type="primary"
-                        shape="circle"
-                        icon={<ArrowRight size={20} />}
-                        className="bg-[#39FF14] text-black hover:bg-[#32D583] flex items-center justify-center"
-                    />
                 </div>
             </div>
         </CardWrapper>

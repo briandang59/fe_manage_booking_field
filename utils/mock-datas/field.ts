@@ -10,6 +10,7 @@ export const mockFields = [
         price_per_hour: 250000,
         grass_type: "Cỏ nhân tạo",
         rating: 4.5,
+        slug: "abc",
     },
     {
         id: 2,
@@ -22,6 +23,7 @@ export const mockFields = [
         price_per_hour: 300000,
         grass_type: "Cỏ tự nhiên",
         rating: 5.0,
+        slug: "abc",
     },
     {
         id: 3,
@@ -34,6 +36,7 @@ export const mockFields = [
         price_per_hour: 180000,
         grass_type: "Cỏ nhân tạo",
         rating: 3.5,
+        slug: "abc",
     },
     {
         id: 4,
@@ -46,6 +49,7 @@ export const mockFields = [
         price_per_hour: 500000,
         grass_type: "Cỏ lai",
         rating: 4.0,
+        slug: "abc",
     },
     {
         id: 3,
@@ -58,6 +62,7 @@ export const mockFields = [
         price_per_hour: 180000,
         grass_type: "Cỏ nhân tạo",
         rating: 3.5,
+        slug: "abc",
     },
     {
         id: 4,
@@ -70,6 +75,7 @@ export const mockFields = [
         price_per_hour: 500000,
         grass_type: "Cỏ lai",
         rating: 4.0,
+        slug: "abc",
     },
     {
         id: 3,
@@ -82,6 +88,7 @@ export const mockFields = [
         price_per_hour: 180000,
         grass_type: "Cỏ nhân tạo",
         rating: 3.5,
+        slug: "abc",
     },
     {
         id: 4,
@@ -94,6 +101,7 @@ export const mockFields = [
         price_per_hour: 500000,
         grass_type: "Cỏ lai",
         rating: 4.0,
+        slug: "abc",
     },
     {
         id: 3,
@@ -106,6 +114,7 @@ export const mockFields = [
         price_per_hour: 180000,
         grass_type: "Cỏ nhân tạo",
         rating: 3.5,
+        slug: "abc",
     },
     {
         id: 4,
@@ -118,5 +127,6 @@ export const mockFields = [
         price_per_hour: 500000,
         grass_type: "Cỏ lai",
         rating: 4.0,
+        slug: "abc",
     },
 ];
