@@ -6,7 +6,7 @@ import AntdProvider from "@/components/common/AntProvider";
 import Footer from "@/components/common/Footer";
 import Header from "@/components/common/Header";
 
-import "../globals.css";
+import "../globals.scss";
 
 // Geist font từ Vercel – đẹp miễn bàn
 const geistSans = Geist({

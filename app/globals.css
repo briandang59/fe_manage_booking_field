@@ -1,6 +1,0 @@
-/* app/globals.css – ĐÃ FIX, KHÔNG CÒN LỖI BUILD */
-@import "tailwindcss";
-
-html {
-    font-size: 10px;
-}

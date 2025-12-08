@@ -8,9 +8,8 @@ import { X } from "lucide-react";
 
 import { images } from "@/assets/images";
 import AntdProvider from "@/components/common/AntProvider";
-import Header from "@/components/common/Header";
 
-import "../globals.css";
+import "../globals.scss";
 
 // Geist font từ Vercel – đẹp miễn bàn
 const geistSans = Geist({
