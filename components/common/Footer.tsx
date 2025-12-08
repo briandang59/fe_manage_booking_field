@@ -11,23 +11,23 @@ export default function Footer() {
             <ContainerWrapper>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
                     <div className="space-y-4">
-                        <h2 className="text-2xl font-black text-white uppercase tracking-wider">
+                        <h2 className="text-[24px] font-black text-white uppercase tracking-wider">
                             Sport<span className="text-[#39FF14]">Booking</span>
                         </h2>
-                        <p className="text-gray-400 text-sm leading-relaxed">
+                        <p className="text-gray-400 text-[16px] leading-relaxed">
                             Nền tảng đặt sân bóng trực tuyến hàng đầu. Kết nối đam mê, kiến tạo trận
                             đấu đỉnh cao chỉ với vài cú click chuột.
                         </p>
                         <div className="space-y-2 pt-2">
-                            <div className="flex items-center gap-3 text-gray-400 text-sm">
+                            <div className="flex items-center gap-3 text-gray-400 text-[16px]">
                                 <MapPin size={16} className="text-[#39FF14] shrink-0" />
                                 <span>30 Phan Thúc Duyện, Tân Bình, TP.HCM</span>
                             </div>
-                            <div className="flex items-center gap-3 text-gray-400 text-sm">
+                            <div className="flex items-center gap-3 text-gray-400 text-[16px]">
                                 <Phone size={16} className="text-[#39FF14] shrink-0" />
                                 <span>1900 123 456</span>
                             </div>
-                            <div className="flex items-center gap-3 text-gray-400 text-sm">
+                            <div className="flex items-center gap-3 text-gray-400 text-[16px]">
                                 <Mail size={16} className="text-[#39FF14] shrink-0" />
                                 <span>support@sportbooking.vn</span>
                             </div>
@@ -35,7 +35,7 @@ export default function Footer() {
                     </div>
 
                     <div>
-                        <h3 className="text-[#ececec] font-bold text-lg mb-6">Khám phá</h3>
+                        <h3 className="text-[#ececec] font-bold text-[14px] mb-6">Khám phá</h3>
                         <ul className="space-y-3">
                             {[
                                 "Về chúng tôi",
@@ -47,7 +47,7 @@ export default function Footer() {
                                 <li key={item}>
                                     <a
                                         href="#"
-                                        className="text-gray-400 hover:text-[#39FF14] text-sm transition-colors duration-300"
+                                        className="text-gray-400 hover:text-[#39FF14] text-[16px] transition-colors duration-300"
                                     >
                                         {item}
                                     </a>
@@ -57,7 +57,7 @@ export default function Footer() {
                     </div>
 
                     <div>
-                        <h3 className="text-[#ececec] font-bold text-lg mb-6">Hỗ trợ</h3>
+                        <h3 className="text-[#ececec] font-bold text-[14px] mb-6">Hỗ trợ</h3>
                         <ul className="space-y-3">
                             {[
                                 "Trung tâm trợ giúp",
@@ -69,7 +69,7 @@ export default function Footer() {
                                 <li key={item}>
                                     <a
                                         href="#"
-                                        className="text-gray-400 hover:text-[#39FF14] text-sm transition-colors duration-300"
+                                        className="text-gray-400 hover:text-[#39FF14] text-[16px] transition-colors duration-300"
                                     >
                                         {item}
                                     </a>
@@ -79,8 +79,10 @@ export default function Footer() {
                     </div>
 
                     <div>
-                        <h3 className="text-[#ececec] font-bold text-lg mb-6">Đăng ký nhận tin</h3>
-                        <p className="text-gray-400 text-sm mb-4">
+                        <h3 className="text-[#ececec] font-bold text-[14px] mb-6">
+                            Đăng ký nhận tin
+                        </h3>
+                        <p className="text-gray-400 text-[16px] mb-4">
                             Nhận thông báo về các giải đấu và ưu đãi mới nhất.
                         </p>
                         <div className="flex gap-2">
@@ -100,7 +102,7 @@ export default function Footer() {
                 <Divider className="border-[#343434]" />
 
                 <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-4">
-                    <p className="text-gray-500 text-sm">
+                    <p className="text-gray-500 text-[16px]">
                         © 2024 SportBooking. All rights reserved.
                     </p>
                     <Space size="large">

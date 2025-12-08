@@ -53,7 +53,7 @@ function UserField(props: IUserFieldProps) {
                     height="100%"
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                <div className="absolute top-2 right-2 bg-black/60 backdrop-blur-md px-2 py-1 rounded text-xs text-[#39FF14] font-semibold border border-[#39FF14]/30">
+                <div className="absolute top-2 right-2 bg-black/60 backdrop-blur-md px-2 py-1 rounded text-[14px] text-[#39FF14] font-semibold border border-[#39FF14]/30">
                     {grass_type}
                 </div>
             </div>
