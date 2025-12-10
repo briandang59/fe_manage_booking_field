@@ -7,6 +7,7 @@ export interface ApiError {
 
 export interface ApiResponse<T = any> {
     data?: T;
+    meta?: any;
     error?: string;
     message?: string;
 }
@@ -74,7 +75,7 @@ class ApiClient {
                 headers,
             });
 
-            const data = await response.json().catch(() => ({}));
+            const raw = await response.json().catch(() => ({}));
 
             if (!response.ok) {
                 // Handle 401 Unauthorized - token expired or invalid
@@ -85,15 +86,28 @@ class ApiClient {
                     }
                 }
 
+                const errorMessage =
+                    raw?.error?.message ||
+                    raw?.error?.name ||
+                    raw?.message ||
+                    raw?.error ||
+                    `HTTP ${response.status}: ${response.statusText}`;
+
                 return {
-                    error:
-                        data.error ||
-                        data.message ||
-                        `HTTP ${response.status}: ${response.statusText}`,
+                    error: errorMessage,
+                    message: errorMessage,
+                    data: raw?.data,
+                    meta: raw?.meta,
                 };
             }
 
-            return { data };
+            // Strapi-style success: { data, meta }
+            const payload = raw?.data !== undefined ? raw.data : raw;
+
+            return {
+                data: payload as T,
+                meta: raw?.meta,
+            };
         } catch (error) {
             return {
                 error: error instanceof Error ? error.message : "Network error occurred",

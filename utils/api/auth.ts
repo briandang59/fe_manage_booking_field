@@ -18,6 +18,7 @@ export interface AuthResponse {
         id: number;
         email: string;
         name?: string;
+        role?: string;
     };
 }
 
@@ -28,8 +29,10 @@ export const authApi = {
     async login(credentials: LoginRequest): Promise<ApiResponse<AuthResponse>> {
         const response = await apiClient.post<AuthResponse>("/auth/local/login", credentials);
 
-        if (response.data?.token) {
-            apiClient.setAuthToken(response.data.token);
+        // Strapi-style: token nằm trong response.data
+        const token = response.data?.token;
+        if (token) {
+            apiClient.setAuthToken(token);
         }
 
         return response;
@@ -41,8 +44,9 @@ export const authApi = {
     async register(data: RegisterRequest): Promise<ApiResponse<AuthResponse>> {
         const response = await apiClient.post<AuthResponse>("/auth/local/register", data);
 
-        if (response.data?.token) {
-            apiClient.setAuthToken(response.data.token);
+        const token = response.data?.token;
+        if (token) {
+            apiClient.setAuthToken(token);
         }
 
         return response;
@@ -68,6 +72,25 @@ export const authApi = {
 
         // Backend sẽ tự động redirect về FRONTEND_URL/auth/callback?token=xxx
         // Cấu hình FRONTEND_URL trong backend .env file
+        window.location.href = url;
+    },
+
+    /**
+     * Đăng ký với Google OAuth (luồng đăng ký riêng)
+     * Tương tự loginWithGoogle nhưng trỏ tới endpoint register
+     * @param role - Role của user (user/founder)
+     */
+    registerWithGoogle(role?: string): void {
+        if (typeof window === "undefined") return;
+
+        if (role) {
+            sessionStorage.setItem("oauth_role", role);
+        }
+
+        const apiUrl = `${process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080/api/v1"}/auth/google/register`;
+
+        const url = role ? `${apiUrl}?role=${encodeURIComponent(role)}` : apiUrl;
+
         window.location.href = url;
     },
 

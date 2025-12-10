@@ -40,7 +40,7 @@ function UserField(props: IUserFieldProps) {
 
     return (
         <CardWrapper
-            className="flex flex-col h-full p-0! overflow-hidden border border-transparent group hover:border-[#39FF14] transition-colors duration-300"
+            className="flex flex-col h-full p-0! overflow-hidden border border-transparent group transition-colors duration-300"
             type="field"
             href={`${paths.fields}/${slug}`}
         >

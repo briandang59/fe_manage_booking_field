@@ -2,62 +2,43 @@
 
 import { useState, useEffect } from "react";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { Avatar, Button, Dropdown, Space, MenuProps } from "antd";
+import { Avatar, Button, Dropdown, Space, MenuProps, message } from "antd";
 import { LogIn, User, CalendarDays, LogOut, Badge } from "lucide-react";
 
+import { UserProfile } from "@/types/response/user";
+import { apiClient } from "@/utils/api/client";
 import { paths } from "@/utils/constants/paths";
 import { useAuth } from "@/utils/hooks/useAuth";
-import { useApiSWR } from "@/utils/hooks/useSWR";
 
 import ContainerWrapper from "./ContainerWrapper";
-
-interface UserProfile {
-    id: number;
-    email: string;
-    name?: string;
-}
 
 export default function Header() {
     const pathname = usePathname();
     const { logout, isAuthenticated } = useAuth();
-    const [userName, setUserName] = useState("");
+    const [profile, setProfile] = useState<UserProfile | null>(null);
 
     const authenticated = isAuthenticated();
 
-    const { data: userProfile } = useApiSWR<UserProfile>(authenticated ? "/profile" : null);
-
     useEffect(() => {
-        if (authenticated && userProfile) {
-            setUserName(userProfile.name || userProfile.email || "User");
-        } else if (authenticated) {
-            try {
-                const token =
-                    typeof window !== "undefined"
-                        ? localStorage.getItem("token") ||
-                          document.cookie
-                              .split(";")
-                              .find((c) => c.trim().startsWith("token="))
-                              ?.split("=")[1]
-                        : null;
-                if (token) {
-                    const payload = JSON.parse(atob(token.split(".")[1]));
-                    setUserName(payload.email || "User");
+        const fetchProfile = async () => {
+            if (authenticated) {
+                const response = await apiClient.get<UserProfile>("/profile");
+                if (response.error) {
+                    message.error(response.error);
+                } else if (response.data) {
+                    setProfile(response.data);
                 }
-            } catch (e) {
-                setUserName("User");
             }
-        } else {
-            setUserName("");
-        }
-    }, [authenticated, userProfile]);
+        };
+        fetchProfile();
+    }, [authenticated]);
 
-    // Listen for token updates
     useEffect(() => {
         const handleTokenUpdate = () => {
-            // Force re-render by checking auth again
             window.location.reload();
         };
 
@@ -79,7 +60,7 @@ export default function Header() {
 
     const handleLogout = () => {
         logout();
-        setUserName("");
+        setProfile(null);
     };
 
     const dropdownItems: MenuProps["items"] = [
@@ -135,12 +116,22 @@ export default function Header() {
                         })}
 
                         <li>
-                            {authenticated && userName ? (
+                            {authenticated && profile ? (
                                 <Dropdown menu={{ items: dropdownItems }} trigger={["click"]}>
                                     <Space className="cursor-pointer hover:opacity-80 transition">
-                                        <Avatar size="default" className="bg-primary">
-                                            {userName.charAt(0).toUpperCase()}
-                                        </Avatar>
+                                        {profile?.avatar ? (
+                                            <Image
+                                                src={profile.avatar}
+                                                alt="avatar"
+                                                width={32}
+                                                height={32}
+                                                className="object-cover rounded-full"
+                                            />
+                                        ) : (
+                                            <Avatar size="default">
+                                                {profile?.email?.charAt(0).toUpperCase()}
+                                            </Avatar>
+                                        )}
                                     </Space>
                                 </Dropdown>
                             ) : (

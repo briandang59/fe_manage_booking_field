@@ -17,7 +17,6 @@ function AuthCallbackContent() {
     useEffect(() => {
         const handleCallback = () => {
             try {
-                // Lấy token từ URL query params (backend đã redirect về đây với token)
                 const token = searchParams.get("token");
                 const error = searchParams.get("error");
 
@@ -29,24 +28,17 @@ function AuthCallbackContent() {
                     throw new Error("Không tìm thấy token. Vui lòng đăng nhập lại.");
                 }
 
-                // Lưu token vào localStorage và cookies
                 apiClient.setAuthToken(token);
 
-                // Kiểm tra nếu có role trong sessionStorage (fallback nếu backend chưa hỗ trợ)
-                // Nếu backend đã xử lý role, sessionStorage sẽ không có giá trị
                 const savedRole =
                     typeof window !== "undefined" ? sessionStorage.getItem("oauth_role") : null;
                 if (savedRole) {
-                    // Backend chưa hỗ trợ role, cần update role sau khi đăng nhập
-                    // Gọi API để update role (nếu backend có endpoint)
-                    // apiClient.patch("/users/profile", { role: savedRole }).catch(() => {});
                     sessionStorage.removeItem("oauth_role");
                 }
 
                 setStatus("success");
                 message.success("Đăng nhập thành công!");
 
-                // Redirect về trang chủ sau 1 giây
                 setTimeout(() => {
                     router.push(paths.home);
                 }, 1000);
@@ -55,7 +47,6 @@ function AuthCallbackContent() {
                 setStatus("error");
                 message.error(error instanceof Error ? error.message : "Đăng nhập thất bại");
 
-                // Redirect về trang đăng nhập sau 2 giây
                 setTimeout(() => {
                     router.push(paths.login);
                 }, 2000);
@@ -71,19 +62,23 @@ function AuthCallbackContent() {
                 {status === "loading" && (
                     <>
                         <Spin size="large" />
-                        <p className="mt-4 text-gray-400">Đang xử lý đăng nhập...</p>
+                        <p className="mt-4 text-gray-400 text-[16px]">Đang xử lý đăng nhập...</p>
                     </>
                 )}
                 {status === "success" && (
                     <>
                         <div className="text-green-500 text-2xl mb-4">✓</div>
-                        <p className="text-gray-400">Đăng nhập thành công! Đang chuyển hướng...</p>
+                        <p className="text-gray-400 text-[16px]">
+                            Đăng nhập thành công! Đang chuyển hướng...
+                        </p>
                     </>
                 )}
                 {status === "error" && (
                     <>
                         <div className="text-red-500 text-2xl mb-4">✗</div>
-                        <p className="text-gray-400">Đăng nhập thất bại! Đang chuyển hướng...</p>
+                        <p className="text-gray-400 text-[16px]">
+                            Đăng nhập thất bại! Đang chuyển hướng...
+                        </p>
                     </>
                 )}
             </div>

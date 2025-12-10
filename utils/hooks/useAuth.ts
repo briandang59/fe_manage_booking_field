@@ -19,6 +19,10 @@ export const useAuth = () => {
         authApi.loginWithGoogle(role);
     }, []);
 
+    const registerWithGoogle = useCallback((role?: string) => {
+        authApi.registerWithGoogle(role);
+    }, []);
+
     const logout = useCallback(() => {
         authApi.logout();
     }, []);
@@ -31,6 +35,7 @@ export const useAuth = () => {
         login,
         register,
         loginWithGoogle,
+        registerWithGoogle,
         logout,
         isAuthenticated,
     };

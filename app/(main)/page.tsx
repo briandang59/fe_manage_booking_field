@@ -74,7 +74,7 @@ export default function Home() {
                         {tournamentsMock.map((tour) => (
                             <Card
                                 key={tour.id}
-                                bordered={false}
+                                variant="borderless"
                                 className="bg-[#1E1E1E] border border-[#343434] hover:border-[#39FF14] transition-all duration-300 overflow-hidden"
                                 styles={{ body: { padding: 0 } }}
                             >
