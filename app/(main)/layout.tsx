@@ -1,17 +1,15 @@
-// app/layout.tsx
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
 import AntdProvider from "@/components/common/AntProvider";
+import SWRProvider from "@/components/common/SWRProvider";
 import Footer from "@/components/common/Footer";
 import Header from "@/components/common/Header";
 
 import "../globals.scss";
 
-// Geist font từ Vercel – đẹp miễn bàn
 const geistSans = Geist({
     variable: "--font-geist-sans",
-    // sẽ được dùng trong @theme
     subsets: ["latin"],
     display: "swap",
 });
@@ -53,9 +51,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         `}
             >
                 <AntdProvider>
-                    <Header />
-                    <main className="flex-1">{children}</main>
-                    <Footer />
+                    <SWRProvider>
+                        <Header />
+                        <main className="flex-1">{children}</main>
+                        <Footer />
+                    </SWRProvider>
                 </AntdProvider>
             </body>
         </html>

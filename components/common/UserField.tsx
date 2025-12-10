@@ -40,7 +40,7 @@ function UserField(props: IUserFieldProps) {
 
     return (
         <CardWrapper
-            className="flex flex-col h-full p-0 overflow-hidden border border-[#343434] group hover:border-[#39FF14] transition-colors duration-300"
+            className="flex flex-col h-full p-0! overflow-hidden border border-transparent group hover:border-[#39FF14] transition-colors duration-300"
             type="field"
             href={`${paths.fields}/${slug}`}
         >
@@ -53,7 +53,7 @@ function UserField(props: IUserFieldProps) {
                     height="100%"
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                <div className="absolute top-2 right-2 bg-black/60 backdrop-blur-md px-2 py-1 rounded text-[14px] text-[#39FF14] font-semibold border border-[#39FF14]/30">
+                <div className="absolute top-2 right-2 bg-black/60 backdrop-blur-md px-2 py-1 rounded-full text-[14px] text-[#39FF14] font-semibold border border-[#39FF14]/30">
                     {grass_type}
                 </div>
             </div>
@@ -86,7 +86,7 @@ function UserField(props: IUserFieldProps) {
                     ))}
                 </div>
                 <div className="flex-1"></div>
-                <div className="flex items-center justify-between mt-3 pt-3 border-t border-[#343434]">
+                <div className="flex items-center justify-between mt-3 pt-3 border-t border-transparent">
                     <div>
                         <p className="text-[14px] text-gray-400">Giá từ</p>
                         <p className="text-[16px] font-bold text-[#39FF14]">

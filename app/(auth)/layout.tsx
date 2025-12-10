@@ -8,6 +8,7 @@ import { X } from "lucide-react";
 
 import { images } from "@/assets/images";
 import AntdProvider from "@/components/common/AntProvider";
+import SWRProvider from "@/components/common/SWRProvider";
 
 import "../globals.scss";
 
@@ -56,29 +57,31 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         `}
             >
                 <AntdProvider>
-                    <div className="grid grid-cols-2 gap-2 min-h-screen">
-                        <Image
-                            src={images.authImage.src}
-                            alt="auth-image"
-                            preview={false}
-                            height={"100%"}
-                            width={"100%"}
-                            className="object-cover"
-                        />
-                        <main className="flex flex-col gap-16">
-                            <div className="flex justify-end">
-                                <Link
-                                    href={`/`}
-                                    className="rounded-full min-size-[50px] flex items-center justify-center p-8"
-                                >
-                                    <X />
-                                </Link>
-                            </div>
-                            <div className="p-8 flex items-center justify-center flex-1">
-                                {children}
-                            </div>
-                        </main>
-                    </div>
+                    <SWRProvider>
+                        <div className="grid grid-cols-2 gap-2 min-h-screen">
+                            <Image
+                                src={images.authImage.src}
+                                alt="auth-image"
+                                preview={false}
+                                height={"100%"}
+                                width={"100%"}
+                                className="object-cover"
+                            />
+                            <main className="flex flex-col gap-16">
+                                <div className="flex justify-end">
+                                    <Link
+                                        href={`/`}
+                                        className="rounded-full min-size-[50px] flex items-center justify-center p-8"
+                                    >
+                                        <X />
+                                    </Link>
+                                </div>
+                                <div className="p-8 flex items-center justify-center flex-1">
+                                    {children}
+                                </div>
+                            </main>
+                        </div>
+                    </SWRProvider>
                 </AntdProvider>
             </body>
         </html>

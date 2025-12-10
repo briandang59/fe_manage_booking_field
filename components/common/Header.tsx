@@ -9,18 +9,65 @@ import { Avatar, Button, Dropdown, Space, MenuProps } from "antd";
 import { LogIn, User, CalendarDays, LogOut, Badge } from "lucide-react";
 
 import { paths } from "@/utils/constants/paths";
+import { useAuth } from "@/utils/hooks/useAuth";
+import { useApiSWR } from "@/utils/hooks/useSWR";
 
 import ContainerWrapper from "./ContainerWrapper";
 
+interface UserProfile {
+    id: number;
+    email: string;
+    name?: string;
+}
+
 export default function Header() {
     const pathname = usePathname();
+    const { logout, isAuthenticated } = useAuth();
+    const [userName, setUserName] = useState("");
 
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [userName, setUserName] = useState("Nguyễn Văn A");
+    const authenticated = isAuthenticated();
+
+    const { data: userProfile } = useApiSWR<UserProfile>(authenticated ? "/profile" : null);
 
     useEffect(() => {
-        const token = localStorage.getItem("access_token");
-        if (token) setIsLoggedIn(true);
+        if (authenticated && userProfile) {
+            setUserName(userProfile.name || userProfile.email || "User");
+        } else if (authenticated) {
+            try {
+                const token =
+                    typeof window !== "undefined"
+                        ? localStorage.getItem("token") ||
+                          document.cookie
+                              .split(";")
+                              .find((c) => c.trim().startsWith("token="))
+                              ?.split("=")[1]
+                        : null;
+                if (token) {
+                    const payload = JSON.parse(atob(token.split(".")[1]));
+                    setUserName(payload.email || "User");
+                }
+            } catch (e) {
+                setUserName("User");
+            }
+        } else {
+            setUserName("");
+        }
+    }, [authenticated, userProfile]);
+
+    // Listen for token updates
+    useEffect(() => {
+        const handleTokenUpdate = () => {
+            // Force re-render by checking auth again
+            window.location.reload();
+        };
+
+        window.addEventListener("token-updated", handleTokenUpdate);
+        window.addEventListener("storage", handleTokenUpdate);
+
+        return () => {
+            window.removeEventListener("token-updated", handleTokenUpdate);
+            window.removeEventListener("storage", handleTokenUpdate);
+        };
     }, []);
 
     const pages = [
@@ -31,9 +78,8 @@ export default function Header() {
     ];
 
     const handleLogout = () => {
-        localStorage.removeItem("access_token");
-        setIsLoggedIn(false);
-        window.location.href = paths.home;
+        logout();
+        setUserName("");
     };
 
     const dropdownItems: MenuProps["items"] = [
@@ -89,7 +135,7 @@ export default function Header() {
                         })}
 
                         <li>
-                            {isLoggedIn ? (
+                            {authenticated && userName ? (
                                 <Dropdown menu={{ items: dropdownItems }} trigger={["click"]}>
                                     <Space className="cursor-pointer hover:opacity-80 transition">
                                         <Avatar size="default" className="bg-primary">
